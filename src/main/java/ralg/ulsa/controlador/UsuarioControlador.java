@@ -83,27 +83,26 @@ public class UsuarioControlador extends HttpServlet {
 	protected void perfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String parametroCorreo = request.getParameter("correo");
-			String parametroPwd = request.getParameter("contrasenia");
-			if ((parametroCorreo == null || parametroCorreo.isEmpty())
-					&& (parametroPwd == null || parametroPwd.isEmpty())) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			if (isEmptyOrNull(username) || isEmptyOrNull(password)) {
 				request.setAttribute("msg", "Datos de ingresos erróneos");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/login.jsp");
 				dispatcher.forward(request, response);
 			} else {
 				// Buscar usuario y contraseña en la base de datos
 				Usuario usuario = new Usuario();
-				usuario.setCorreo(parametroCorreo);
-				usuario.setPassword(parametroPwd.trim());
+				usuario.setCorreo(username);
+				usuario.setPassword(password.trim());
 
 				HttpSession session = request.getSession();
 				synchronized (session) {
 					session.setAttribute("usuario", usuario);
-					response.sendRedirect(request.getContextPath() + "/usuario/perfil.jsp");
+					response.sendRedirect(request.getContextPath() + "/index.jsp");
 				}
 			}
 		} catch (Exception e) {
-			response.sendRedirect(request.getContextPath() + "/usuario/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
 		}
 	}
 
