@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="ralg.ulsa.modelo.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,14 @@
     href="<%=request.getContextPath()%>/css/registrar/style.css">
 </head>
 <body>
+    <%
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+    %>
+    <c:if test="${usuario != null }">
+        <%
+        response.sendRedirect(request.getContextPath() + "/pages/perfil.jsp");
+        %>
+    </c:if>
     <div class="main">
         <section class="signup">
 
@@ -19,31 +29,33 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Reg&iacute;strate</h2>
-                        <form action="<%=request.getContextPath()%>/Usuario/registrar" class="register-form"
-                            id="register-form">
+                        <form
+                            action="<%=request.getContextPath()%>/Usuario/registrar"
+                            class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i
                                     class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name"
-                                    placeholder="Tu nombre" />
+                                <input type="text" name="nombre"
+                                    id="nombre" placeholder="Tu nombre" />
                             </div>
                             <div class="form-group">
                                 <label for="email"><i
                                     class="zmdi zmdi-email"></i></label> <input
-                                    type="email" name="email" id="email"
-                                    placeholder="Tu correo" />
+                                    type="email" name="correo"
+                                    id="correo" placeholder="Tu correo" />
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i
                                     class="zmdi zmdi-lock"></i></label> <input
-                                    type="password" name="pass"
-                                    id="pass" placeholder="Contraseña" />
+                                    type="password" name="password"
+                                    id="password"
+                                    placeholder="Contraseña" />
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i
                                     class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass"
-                                    id="re_pass"
+                                <input type="password"
+                                    name="re_password" id="re_password"
                                     placeholder="Confirma tu contraseña" />
                             </div>
                             <div class="form-group">
@@ -69,7 +81,8 @@
                                 alt="sing up image">
                         </figure>
                         <a href="login.jsp" class="signup-image-link">Ya
-                            tengo una cuenta</a>
+                            tengo una cuenta</a> <a href="<%=request.getContextPath()%>/index.jsp"
+                            class="signup-image-link">Regresar al inicio</a>
                     </div>
                 </div>
             </div>

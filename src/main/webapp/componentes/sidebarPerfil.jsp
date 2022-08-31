@@ -1,43 +1,14 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-          <use href="<%=request.getContextPath()%>/css/perfil/brand/coreui.svg#full"></use>
-        </svg>
-        <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
-          <use href="<%=request.getContextPath()%>/css/perfil/brand/coreui.svg#signet"></use>
-        </svg>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Dot_Art_logo.svg/1200px-Dot_Art_logo.svg.png"
+           width="118" height="46" class="mx-auto"/>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-            </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
-        <li class="nav-title">Theme</li>
-        <li class="nav-item"><a class="nav-link" href="colors.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
-            </svg> Colors</a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-            </svg> Typography</a></li>
+        <li class="nav-item"><a class="nav-link" href="perfil.jsp">
+            <i class="fa-solid fa-house-user nav-icon"></i>Principal</a></li>
+        <li class="nav-title">USUARIO</li>
+        <li class="nav-item"><a class="nav-link" href="perfil.jsp">
+            <i class="fa-solid fa-circle-plus nav-icon"></i>Crear</a></li>
         <li class="nav-divider"></li>
-        <li class="nav-title">Extras</li>
-        <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
-            </svg> Pages</a>
-          <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="login.html" target="_top">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
-                <svg class="nav-icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Register</a></li>
-          </ul>
-        </li>
       </ul>
-      <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>

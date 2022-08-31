@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Hasta luego</title>
+<title>Cerrando sesi&oacute;n...</title>
 </head>
 <body>
     <%
     session.removeAttribute("usuario");
     session.invalidate();
-    response.sendRedirect(request.getContextPath() + "/usuario/login.jsp");
+    response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
     %>
 </body>
 </html>

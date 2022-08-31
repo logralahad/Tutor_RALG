@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="ralg.ulsa.modelo.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,14 @@
     href="<%=request.getContextPath()%>/css/login/owl-carousel.min.css">
 </head>
 <body>
+    <%
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+    %>
+    <c:if test="${usuario != null }">
+        <%
+        response.sendRedirect(request.getContextPath() + "/pages/perfil.jsp");
+        %>
+    </c:if>
     <div class="d-lg-flex half">
         <div class="bg order-1 order-md-2"
             style="background-image: url('<%=request.getContextPath()%>/images/bg_1.jpg');"></div>
@@ -23,10 +33,19 @@
                 <div
                     class="row align-items-center justify-content-center">
                     <div class="col-md-7">
-                        <div class="mb-4">
-                            <h3>Iniciar sesi&oacute;n</h3>
-                            <p class="mb-4">Es un gusto tenerte de
-                                vuelta.</p>
+                        <div class="row justify-content-between mb-4">
+                            <div class="col-11">
+                                <h3>Iniciar sesi&oacute;n</h3>
+                                <p class="mb-4">Es un gusto tenerte
+                                    de vuelta.</p>
+                            </div>
+
+                            <div class="col-1 align-self-center">
+                                <a
+                                    href="<%=request.getContextPath()%>/index.jsp">
+                                    <i class="fa-solid fa-house fa-xl"></i>
+                                </a>
+                            </div>
                         </div>
                         <form
                             action="<%=request.getContextPath()%>/Usuario/login">
@@ -52,8 +71,10 @@
                                 </label> <span class="ml-auto"><a
                                     href="#" class="forgot-pass">Olvid&eacute;
                                         mi contrase&ntilde;a</a></span> <span
-                                    class="ml-auto"><a href="registrar.jsp"
-                                    class="forgot-pass">No tengo cuenta</a></span>
+                                    class="ml-auto"><a
+                                    href="registrar.jsp"
+                                    class="forgot-pass">No tengo
+                                        cuenta</a></span>
                             </div>
 
                             <input type="submit" value="Entrar"
