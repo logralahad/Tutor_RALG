@@ -12,6 +12,8 @@
 
 <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/f823a176f3.js"
+    crossorigin="anonymous"></script>
 <script
     src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js"></script>
 <script

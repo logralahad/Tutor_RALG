@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <jsp:include page="/componentes/footer.jsp"></jsp:include>
+    <jsp:include page="/componentes/footerIndex.jsp"></jsp:include>
     <script src="<%=request.getContextPath()%>/js/index/plugins.js"></script>
     <script src="<%=request.getContextPath()%>/js/index/main.js"></script>
 </body>
