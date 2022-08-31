@@ -19,6 +19,8 @@
     href="<%=request.getContextPath()%>/css/index/templatemo-main.css">
 <link rel="stylesheet"
     href="<%=request.getContextPath()%>/css/index/owl-carousel.css">
+<link rel="stylesheet"
+    href="<%=request.getContextPath()%>/css/index/style.css">
 </head>
 <body>
     <%
@@ -55,7 +57,8 @@
     </div>
 
     <div class="service-content" id="services"
-        style="background-image: url('<%=request.getContextPath()%>/images/2nd-section.jpg')"></div>
+        style="background-image: url('<%=request.getContextPath()%>/images/2nd-section.jpg')">
+    </div>
 
     <div class="parallax-content projects-content" id="portfolio"
         style="background-image: url('<%=request.getContextPath()%>/images/3rd-section.jpg')"></div>
