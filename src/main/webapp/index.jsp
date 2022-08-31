@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="ralg.ulsa.modelo.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,17 +21,28 @@
     href="<%=request.getContextPath()%>/css/index/owl-carousel.css">
 </head>
 <body>
+    <%
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+    %>
     <div class="fixed-side-navbar">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" href="#home"><span>Intro</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#services"><span>Services</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#portfolio"><span>Portfolio</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#our-story"><span>Our Story</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact-us"><span>Contact Us</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#home"><span>Inicio</span></a></li>
+            <c:if test="${usuario == null }">
+                <li class="nav-item"><a class="nav-link"
+                href="<%=request.getContextPath()%>/pages/login.jsp"><span>Login</span></a></li>
+            <li class="nav-item"><a class="nav-link"
+                href="<%=request.getContextPath()%>/pages/registrar.jsp"><span>Registrarse</span></a></li>
+            </c:if>
+            <c:if test="${usuario != null }">
+                <li class="nav-item"><a class="nav-link"
+                    href="<%=request.getContextPath()%>/pages/perfil.jsp"><span>Tablero</span></a></li>
+            </c:if>
+
         </ul>
     </div>
 
-    <div class="parallax-content baner-content" id="home" style="background-image: url('<%=request.getContextPath()%>/images/1st-section.jpg')">
+    <div class="parallax-content baner-content" id="home"
+        style="background-image: url('<%=request.getContextPath()%>/images/1st-section.jpg')">
         <div class="container">
             <div class="first-content">
                 <h1>OJO DE PEZ</h1>

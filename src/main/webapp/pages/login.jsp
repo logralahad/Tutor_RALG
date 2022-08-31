@@ -51,7 +51,9 @@
                                     <div class="control__indicator"></div>
                                 </label> <span class="ml-auto"><a
                                     href="#" class="forgot-pass">Olvid&eacute;
-                                        mi contrase&ntilde;a</a></span>
+                                        mi contrase&ntilde;a</a></span> <span
+                                    class="ml-auto"><a href="registrar.jsp"
+                                    class="forgot-pass">No tengo cuenta</a></span>
                             </div>
 
                             <input type="submit" value="Entrar"
@@ -82,7 +84,7 @@
             </div>
         </div>
     </div>
-    
+
     <script
         src="<%=request.getContextPath()%>/js/login/owl.carousel.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/login/popper.min.js"></script>

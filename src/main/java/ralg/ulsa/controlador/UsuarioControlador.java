@@ -56,7 +56,7 @@ public class UsuarioControlador extends HttpServlet {
 			String action = request.getPathInfo();
 			switch (action) {
 			case "/login":
-				this.perfil(request, response);
+				this.login(request, response);
 				break;
 			case "/registrar":
 				this.registrar(request, response);
@@ -80,7 +80,7 @@ public class UsuarioControlador extends HttpServlet {
 		}
 	}
 
-	protected void perfil(HttpServletRequest request, HttpServletResponse response)
+	protected void login(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			String username = request.getParameter("username");
@@ -98,7 +98,7 @@ public class UsuarioControlador extends HttpServlet {
 				HttpSession session = request.getSession();
 				synchronized (session) {
 					session.setAttribute("usuario", usuario);
-					response.sendRedirect(request.getContextPath() + "/index.jsp");
+					response.sendRedirect(request.getContextPath() + "/pages/perfil.jsp");
 				}
 			}
 		} catch (Exception e) {
