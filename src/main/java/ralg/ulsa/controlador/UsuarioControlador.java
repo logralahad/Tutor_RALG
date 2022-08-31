@@ -132,7 +132,7 @@ public class UsuarioControlador extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/login.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
@@ -147,7 +147,7 @@ public class UsuarioControlador extends HttpServlet {
 		try {
 			if (isEmptyOrNull(parametroCorreo) || isEmptyOrNull(parametroPwd) || isEmptyOrNull(parametroVigencia)) {
 				request.setAttribute("error", "Datos de ingreso erróneos o incompletos");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarUsuario.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/usuario/crearUsuario.jsp");
 				dispatcher.forward(request, response);
 
 			} else {
@@ -157,14 +157,14 @@ public class UsuarioControlador extends HttpServlet {
 				usuario.setStatus(parametroEstatus);
 				usuario.setFechaVigencia(parametroVigencia);
 				request.setAttribute("success", "Un nuevo usuario ha sido agregado al sistema.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarUsuario.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/usuario/crearUsuario.jsp");
 				dispatcher.forward(request, response);
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/usuario.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/usuario/registrosUsuario.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
@@ -177,7 +177,7 @@ public class UsuarioControlador extends HttpServlet {
 		try {
 			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion)) {
 				request.setAttribute("error", "Datos de ingreso erróneos o incompletos");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarRol.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/rol/crearRol.jsp");
 				dispatcher.forward(request, response);
 
 			} else {
@@ -187,14 +187,14 @@ public class UsuarioControlador extends HttpServlet {
 				rol.setDescripcion(descripcion);
 
 				request.setAttribute("success", "Un nuevo rol ha sido agregado al sistema.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarRol.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/rol/crearRol.jsp");
 				dispatcher.forward(request, response);
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/rol.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/rol/registrosRol.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
@@ -215,7 +215,7 @@ public class UsuarioControlador extends HttpServlet {
 					|| isEmptyOrNull(parametroTelefono) || isEmptyOrNull(parametroRFC) || isEmptyOrNull(parametroEdad)
 					|| isEmptyOrNull(parametroNacimiento) || isEmptyOrNull(parametroDomicilio)) {
 				request.setAttribute("error", "Datos de ingreso erróneos o incompletos");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarPersona.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/persona/crearPersona.jsp");
 				dispatcher.forward(request, response);
 
 			} else {
@@ -231,14 +231,14 @@ public class UsuarioControlador extends HttpServlet {
 				persona.setDomicilio(parametroDomicilio);
 
 				request.setAttribute("success", "Una nueva persona ha sido agregado al sistema.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarPersona.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/persona/crearPersona.jsp");
 				dispatcher.forward(request, response);
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/persona.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/persona/registrosPersona.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
@@ -257,7 +257,7 @@ public class UsuarioControlador extends HttpServlet {
 			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion) || isEmptyOrNull(precio) || isEmptyOrNull(imagen)
 					|| isEmptyOrNull(existencias) || isEmptyOrNull(codigo) || isEmptyOrNull(porcentaje)) {
 				request.setAttribute("error", "Datos de ingreso erróneos o incompletos");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarProducto.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/producto/crearProducto.jsp");
 				dispatcher.forward(request, response);
 
 			} else {
@@ -272,14 +272,14 @@ public class UsuarioControlador extends HttpServlet {
 				producto.setIvaPorcentaje(Integer.parseInt(porcentaje));
 
 				request.setAttribute("success", "Un nuevo producto ha sido agregado al sistema.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/registrarProducto.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/producto/crearProducto.jsp");
 				dispatcher.forward(request, response);
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/usuario/producto.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/producto/registrosProducto.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

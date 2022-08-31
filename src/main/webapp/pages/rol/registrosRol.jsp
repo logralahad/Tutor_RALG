@@ -6,37 +6,31 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Rol</title>
-<jsp:include page="/componentes/bootstrap.jsp"></jsp:include>
-
-<link rel="stylesheet" type="text/css"
-    href="<%=request.getContextPath()%>/css/bootstrap-5.0.2/dashboard.css">
-
-<link rel="stylesheet" type="text/css"
-    href="<%=request.getContextPath()%>/css/bootstrap-5.0.2/dashboard.rtl.css">
+<title>Tablero</title>
+<jsp:include page="/componentes/perfilUtilities.jsp"></jsp:include>
 </head>
 <body>
     <%
     Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
     %>
     <c:if test="${usuario == null }">
-        <jsp:forward page="./login.jsp"></jsp:forward>
+        <%
+        response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
+        %>
     </c:if>
-    <jsp:include page="/componentes/adminHeader.jsp">
-        <jsp:param value="${usuario.getCorreo()}" name="correoUsuario" />
-    </jsp:include>
-
-    <div class="container-fluid">
-        <div class="row">
-            <jsp:include page="/componentes/menuLateral.jsp"></jsp:include>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">ROL</h1>
-
-
-                    <a class="btn btn-labeled btn-primary"
-                        href="<%=request.getContextPath()%>/usuario/registrarRol.jsp"
+    <jsp:include page="/componentes/sidebarPerfil.jsp"></jsp:include>
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <jsp:include page="/componentes/headerPerfil.jsp">
+            <jsp:param value="Roles registrados" name="textoSeccion" />
+        </jsp:include>
+        <div class="body flex-grow-1 px-3">
+            <div class="container-lg">
+                <div class="row">
+                    <main class="col-12">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                            <a class="btn btn-labeled btn-primary"
+                                href="<%=request.getContextPath()%>/pages/rol/crearRol.jsp"
                         role="button"><span class="btn-label pe-2"><i
                             class="fa fa-plus"></i></span>Nuevo rol</a>
 
@@ -72,6 +66,9 @@
                 </div>
             </main>
         </div>
+            </div>
+        </div>
+        <jsp:include page="/componentes/footerPerfil.jsp"></jsp:include>
     </div>
 </body>
 </html>
