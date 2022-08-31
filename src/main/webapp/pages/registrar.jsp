@@ -33,28 +33,54 @@
                             action="<%=request.getContextPath()%>/Usuario/registrar"
                             class="register-form" id="register-form">
                             <div class="form-group">
-                                <label for="name"><i
-                                    class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="nombre"
+                                <label for="nombre"><i
+                                    class="zmdi zmdi-account-circle"></i></label>
+                                <input type="text" name="nombre" required
                                     id="nombre" placeholder="Tu nombre" />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="paterno"><i
+                                    class="zmdi zmdi-accounts-outline"></i></label>
+                                <input type="text" name="paterno" required
+                                    id="paterno" placeholder="Tu apellido paterno" />
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="materno"><i
+                                    class="zmdi zmdi-accounts-alt"></i></label>
+                                <input type="text" name="materno" required
+                                    id="materno" placeholder="Tu apellido materno" />
+                            </div>
+                            <div class="form-group">
+                                <label for="edad"><i
+                                    class="zmdi zmdi-n-1-square"></i></label>
+                                <input type="number" name="edad" required
+                                    id="edad" placeholder="Tu edad" />
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono"><i
+                                    class="zmdi zmdi-phone"></i></label>
+                                <input type="text" name="telefono" required
+                                    id="telefono" placeholder="Tu telefono" />
                             </div>
                             <div class="form-group">
                                 <label for="email"><i
                                     class="zmdi zmdi-email"></i></label> <input
-                                    type="email" name="correo"
+                                    type="email" name="correo" required
                                     id="correo" placeholder="Tu correo" />
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i
                                     class="zmdi zmdi-lock"></i></label> <input
                                     type="password" name="password"
-                                    id="password"
+                                    id="password" required
                                     placeholder="Contraseña" />
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i
                                     class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password"
+                                <input type="password" required
                                     name="re_password" id="re_password"
                                     placeholder="Confirma tu contraseña" />
                             </div>

@@ -108,15 +108,14 @@ public class UsuarioControlador extends HttpServlet {
 
 	protected void registrar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String parametroNombre = request.getParameter("name");
+		String parametroNombre = request.getParameter("nombre");
 		String parametroPaterno = request.getParameter("paterno");
 		String parametroMaterno = request.getParameter("materno");
 		Integer parametroEdad = Integer.parseInt(request.getParameter("edad"));
 		String parametroTelefono = request.getParameter("telefono");
 		String parametroCorreo = request.getParameter("correo");
-		String parametroPwd = request.getParameter("pwd");
-		String parametroEmpresa = request.getParameter("empresa");
-		String parametroDireccion = request.getParameter("direccion");
+		String parametroPwd = request.getParameter("password");
+		Boolean parametroAgree = Boolean.parseBoolean(request.getParameter("agree-term"));
 
 		try {
 			Persona persona = new Persona();
@@ -126,13 +125,22 @@ public class UsuarioControlador extends HttpServlet {
 			persona.setEdad(parametroEdad);
 			persona.setTelefono(parametroTelefono);
 
+			if (!parametroAgree) {
+				request.setAttribute("msg", "Debe aceptar los terminos");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/registrar.jsp");
+				dispatcher.forward(request, response);
+			}
+
 			Usuario usuario = new Usuario();
 			usuario.setCorreo(parametroCorreo);
 			usuario.setPassword(parametroPwd);
+			HttpSession session = request.getSession();
+			synchronized (session) {
+				session.setAttribute("usuario", usuario);
+				response.sendRedirect(request.getContextPath() + "/pages/perfil.jsp");
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/registrar.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
