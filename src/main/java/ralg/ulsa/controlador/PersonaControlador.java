@@ -244,6 +244,10 @@ public class PersonaControlador extends HttpServlet {
 					cell.setCellValue(item.getDomicilio());
 				}
 
+				for (int i = 0; i < headers.length; i++) {
+					sheet.autoSizeColumn(i);
+				}
+
 				workbook.write(response.getOutputStream());
 				workbook.close();
 				return;

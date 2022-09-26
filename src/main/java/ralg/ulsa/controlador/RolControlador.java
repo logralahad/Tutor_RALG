@@ -191,6 +191,10 @@ public class RolControlador extends HttpServlet {
 					cell.setCellValue(item.getDescripcion());
 				}
 
+				for (int i = 0; i < headers.length; i++) {
+					sheet.autoSizeColumn(i);
+				}
+
 				workbook.write(response.getOutputStream());
 				workbook.close();
 				return;

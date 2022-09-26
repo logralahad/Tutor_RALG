@@ -292,7 +292,6 @@ public class UsuarioControlador extends HttpServlet {
 				for (int i = 0; i < headers.length; i++) {
 					Cell headerCell = headerRow.createCell(i);
 					headerCell.setCellValue(headers[i]);
-					sheet.autoSizeColumn(i);
 				}
 
 				int rowCount = 1;
@@ -316,6 +315,10 @@ public class UsuarioControlador extends HttpServlet {
 
 					cell = row.createCell(columnCount++);
 					cell.setCellValue(item.getFechaVigencia());
+				}
+
+				for (int i = 0; i < headers.length; i++) {
+					sheet.autoSizeColumn(i);
 				}
 
 				workbook.write(response.getOutputStream());

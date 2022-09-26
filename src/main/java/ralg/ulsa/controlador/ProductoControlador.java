@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -206,6 +208,10 @@ public class ProductoControlador extends HttpServlet {
 				}
 
 				int rowCount = 1;
+				DataFormat format = workbook.createDataFormat();
+				CellStyle style = workbook.createCellStyle();
+				style.setDataFormat(format.getFormat("#.#"));
+
 				for (Producto item : productos) {
 					Row row = sheet.createRow(rowCount++);
 					int columnCount = 0;
@@ -219,6 +225,7 @@ public class ProductoControlador extends HttpServlet {
 					cell.setCellValue(item.getDescripcion());
 
 					cell = row.createCell(columnCount++);
+					cell.setCellStyle(style);
 					cell.setCellValue(item.getPrecio());
 
 					cell = row.createCell(columnCount++);
@@ -232,6 +239,10 @@ public class ProductoControlador extends HttpServlet {
 
 					cell = row.createCell(columnCount++);
 					cell.setCellValue(item.getIvaPorcentaje());
+				}
+
+				for (int i = 0; i < headers.length; i++) {
+					sheet.autoSizeColumn(i);
 				}
 
 				workbook.write(response.getOutputStream());

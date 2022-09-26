@@ -36,7 +36,7 @@
                                     class="fa fa-plus"></i></span>Nueva persona</a>
                             <a
                                 class="btn btn-labeled btn-success text-white"
-                                href="<%=request.getContextPath()%>/Producto/descargarExcel"
+                                href="<%=request.getContextPath()%>/Persona/descargarExcel"
                                 role="button"><span
                                 class="btn-label pe-2"><i
                                     class="fa fa-file-excel-o"></i></span>Exportar
