@@ -24,7 +24,7 @@
         <div class="error__title">404</div>
         <div class="error__subtitle">Hmmm...</div>
         <div class="error__description">Parece que un desarrollador se durmi&oacute;</div>
-        <button class="error__button error__button--active" onclick="history.back()">Regresar en el tiempo</button>
+        <button class="error__button error__button--active" onclick="location.href ='<%=request.getContextPath()%>/index.jsp'">Regresar en el tiempo</button>
     </div>
 
     <div class="astronaut">
