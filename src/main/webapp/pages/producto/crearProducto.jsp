@@ -42,10 +42,11 @@
                             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                             <h1 class="h2">Registrar producto</h1>
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col">
-                                <form method="post"
-                                    action="<%=request.getContextPath()%>/Producto/crear">
+
+                        <form method="post"
+                            action="<%=request.getContextPath()%>/Producto/crear">
+                            <div class="row justify-content-center">
+                                <div class="col-9">
                                     <div class="mb-3 row">
                                         <label for="nombre"
                                             class="col-sm-2 col-form-label">Nombre</label>
@@ -70,20 +71,17 @@
                                         <label for="precio"
                                             class="col-sm-2 col-form-label">Precio</label>
                                         <div class="col-sm-10">
-                                            <input type="number" min="0"
-                                                step="0.01"
-                                                class="form-control"
-                                                name="precio">
-                                        </div>
-                                    </div>
+                                            <div class="input-group">
+                                                <span
+                                                    class="input-group-text">$</span>
+                                                <span
+                                                    class="input-group-text">0.00</span>
 
-                                    <div class="mb-3 row">
-                                        <label for="imagen"
-                                            class="col-sm-2 col-form-label">Imagen</label>
-                                        <div class="col-sm-10">
-                                            <input type="text"
-                                                class="form-control"
-                                                name="imagen">
+                                                <input type="number"
+                                                    min="0" step="0.01"
+                                                    class="form-control"
+                                                    name="precio">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -114,35 +112,95 @@
                                             class="col-sm-2 col-form-label">Porcentaje
                                             de IVA</label>
                                         <div class="col-sm-10">
-                                            <input type="number" min="0"
+                                            <div
+                                                class="input-group mb-3">
+                                                <input type="number"
+                                                    min="0"
+                                                    class="form-control"
+                                                    name="porcentaje" />
+                                                <span
+                                                    class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 mb-3">
+                                    <div class="row mb-3">
+                                        <label for="imagen"
+                                            class="col-sm-2 col-form-label">Imagen</label>
+                                    </div>
+
+                                    <div
+                                        class="row mb-3 justify-content-center">
+                                        <input hidden="true" value=""
+                                            name="imagenActual"
+                                            id="imagenActual" /> <img
+                                            src="" id="imagenProducto"
+                                            style="height: 100px; width: auto;"
+                                            class="img-fluid rounded mx-auto d-block"
+                                            alt="...">
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="input-group">
+                                            <span
+                                                class="input-group-text">URL</span>
+                                            <input type="text"
                                                 class="form-control"
-                                                name="porcentaje">
+                                                onchange="previewImage(event)"
+                                                name="imagen">
                                         </div>
                                     </div>
 
                                     <div
-                                        class="mb-3 row justify-content-end">
-                                        <div class="col-3">
-                                            <button type="submit"
-                                                class="btn btn-success text-white mb-3 w-100">Agregar</button>
-                                        </div>
-
-                                        <div class="col-3">
-                                            <a
-                                                class="btn btn-labeled btn-danger text-white mb-3 w-100"
-                                                href="<%=request.getContextPath()%>/pages/producto/registrosProducto.jsp"
-                                                role="button">Cancelar</a>
+                                        class="row mb-3 justify-content-center">
+                                        <span
+                                            class="badge rounded-pill text-bg-warning w-50">-
+                                            O -</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="file"
+                                                class="form-control"
+                                                name="imagenCargada"
+                                                id="fileAdd"
+                                                aria-describedby="fileAddBtn"
+                                                aria-label="Upload">
+                                            <button
+                                                class="btn btn-outline-secondary"
+                                                type="button"
+                                                onclick="uploadFile()"
+                                                id="fileAddBtn">Subir</button>
                                         </div>
 
                                     </div>
-                                </form>
+
+                                </div>
+                                <div
+                                    class="row mb-3 justify-content-end">
+                                    <div class="col-3">
+                                        <button type="submit"
+                                            class="btn btn-success text-white mb-3 w-100">Agregar</button>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <a
+                                            class="btn btn-labeled btn-danger text-white mb-3 w-100"
+                                            href="<%=request.getContextPath()%>/Producto/listarProductos"
+                                            role="button">Cancelar</a>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                     </main>
                 </div>
             </div>
         </div>
         <jsp:include page="/componentes/footerPerfil.jsp"></jsp:include>
     </div>
+
+    <jsp:include page="/componentes/actionsUtilities.jsp"></jsp:include>
 </body>
 </html>

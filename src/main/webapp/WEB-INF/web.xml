@@ -60,19 +60,29 @@
     <url-pattern>/Producto/*</url-pattern>
   </servlet-mapping>
   <error-page>
-   <error-code>404</error-code>
-   <location>/pages/error404.jsp</location>
-   </error-page>
-   <error-page>
-   <error-code>500</error-code>
-   <location>/pages/error500.jsp</location>
-   </error-page>
-   <error-page>
-   <exception-type>java.lang.Exception</exception-type>
-   <location>/pages/error500.jsp</location>
-   </error-page>
-   <error-page>
-   <exception-type>java.lang.ClassNotFoundException</exception-type>
-   <location>/pages/error500.jsp</location>
-   </error-page>
+    <error-code>404</error-code>
+    <location>/pages/error404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/pages/error500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/pages/error500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.ClassNotFoundException</exception-type>
+    <location>/pages/error500.jsp</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>ImagenControlador</display-name>
+    <servlet-name>ImagenControlador</servlet-name>
+    <servlet-class>ralg.ulsa.controlador.ImagenControlador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImagenControlador</servlet-name>
+    <url-pattern>/image/*</url-pattern>
+  </servlet-mapping>
 </web-app>

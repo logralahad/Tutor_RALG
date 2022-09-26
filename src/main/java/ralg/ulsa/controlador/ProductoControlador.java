@@ -12,14 +12,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import ralg.ulsa.dao.hibernate.ProductoDAO;
 import ralg.ulsa.modelo.Producto;
 import ralg.ulsa.util.HibernateUtil;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024
+		* 100)
 public class ProductoControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductoDAO productoDAO;
@@ -73,6 +77,10 @@ public class ProductoControlador extends HttpServlet {
 				this.descargarExcel(request, response);
 				break;
 
+			case "/subirImagen":
+				this.subirImagen(request, response);
+				break;
+
 			default:
 				response.sendRedirect(request.getContextPath() + "/pages/producto/registrosProducto.jsp");
 				break;
@@ -86,12 +94,12 @@ public class ProductoControlador extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			String descripcion = request.getParameter("descripcion");
 			String precio = request.getParameter("precio");
-			String imagen = request.getParameter("imagen");
+			String urlImagen = request.getParameter("imagenActual");
 			String existencias = request.getParameter("existencias");
 			String codigo = request.getParameter("codigo");
 			String porcentaje = request.getParameter("porcentaje");
 
-			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion) || isEmptyOrNull(precio) || isEmptyOrNull(imagen)
+			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion) || isEmptyOrNull(precio)
 					|| isEmptyOrNull(existencias) || isEmptyOrNull(codigo) || isEmptyOrNull(porcentaje)) {
 				HibernateUtil.setAttributeInSession(request, response, "errorCrear",
 						"/pages/producto/crearProducto.jsp", "No puedes dejar campos vacíos");
@@ -101,7 +109,7 @@ public class ProductoControlador extends HttpServlet {
 				producto.setNombre(nombre);
 				producto.setDescripcion(descripcion);
 				producto.setPrecio(Float.parseFloat(precio));
-				producto.setImagen(imagen);
+				producto.setImagen(urlImagen);
 				producto.setNumExistencias(Integer.parseInt(existencias));
 				producto.setCodigoBarras(codigo);
 				producto.setIvaPorcentaje(Integer.parseInt(porcentaje));
@@ -122,12 +130,12 @@ public class ProductoControlador extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			String descripcion = request.getParameter("descripcion");
 			String precio = request.getParameter("precio");
-			String imagen = request.getParameter("imagen");
+			String urlImagen = request.getParameter("imagenActual");
 			String existencias = request.getParameter("existencias");
 			String codigo = request.getParameter("codigo");
 			String porcentaje = request.getParameter("porcentaje");
 
-			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion) || isEmptyOrNull(precio) || isEmptyOrNull(imagen)
+			if (isEmptyOrNull(nombre) || isEmptyOrNull(descripcion) || isEmptyOrNull(precio)
 					|| isEmptyOrNull(existencias) || isEmptyOrNull(codigo) || isEmptyOrNull(porcentaje)) {
 				HibernateUtil.setAttributeInSession(request, response, "errorUpdate",
 						"/pages/producto/editarProducto.jsp", "No puedes dejar campos vacíos");
@@ -138,7 +146,7 @@ public class ProductoControlador extends HttpServlet {
 				producto.setNombre(nombre);
 				producto.setDescripcion(descripcion);
 				producto.setPrecio(Float.parseFloat(precio));
-				producto.setImagen(imagen);
+				producto.setImagen(urlImagen);
 				producto.setNumExistencias(Integer.parseInt(existencias));
 				producto.setCodigoBarras(codigo);
 				producto.setIvaPorcentaje(Integer.parseInt(porcentaje));
@@ -186,6 +194,15 @@ public class ProductoControlador extends HttpServlet {
 		HibernateUtil.removeAttributeInSession(request, response, "errorUpdate");
 		HibernateUtil.setAttributeInSession(request, response, "listaProductos",
 				"/pages/producto/registrosProducto.jsp", productoDAO.getAllProductos());
+	}
+
+	protected void subirImagen(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Part filePart = request.getPart("file");
+		String fileName = filePart.getSubmittedFileName();
+		for (Part part : request.getParts()) {
+			part.write("C:\\upload\\" + fileName);
+		}
 	}
 
 	protected void descargarExcel(HttpServletRequest request, HttpServletResponse response)
