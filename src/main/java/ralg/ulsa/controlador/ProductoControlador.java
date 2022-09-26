@@ -210,7 +210,7 @@ public class ProductoControlador extends HttpServlet {
 				int rowCount = 1;
 				DataFormat format = workbook.createDataFormat();
 				CellStyle style = workbook.createCellStyle();
-				style.setDataFormat(format.getFormat("#.#"));
+				style.setDataFormat(format.getFormat("#.##"));
 
 				for (Producto item : productos) {
 					Row row = sheet.createRow(rowCount++);
