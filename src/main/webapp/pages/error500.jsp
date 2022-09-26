@@ -17,7 +17,7 @@
     <main class="page fade-in">
         <div id="top-bar" class="top-bar">
             <span class="action-btn action-btn_primary"><a
-                href="<%=request.getContextPath()%>/pages/perfil.jsp">&larr; Regresal al tablero</a></span> <span
+                href="<%=request.getContextPath()%>/index.jsp">&larr; Regresar al inicio</a></span> <span
                 class="game-counter-panel"><span
                 id="game-counter" class="game-counter">99</span> bichos restantes</span>
         </div>

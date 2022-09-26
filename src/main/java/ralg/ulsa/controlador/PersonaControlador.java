@@ -1,9 +1,15 @@
 package ralg.ulsa.controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,7 +44,7 @@ public class PersonaControlador extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-		try (PrintWriter out = response.getWriter()) {
+		try (ServletOutputStream out = response.getOutputStream()) {
 			String action = request.getPathInfo();
 			switch (action) {
 			case "/crear":
@@ -189,10 +195,64 @@ public class PersonaControlador extends HttpServlet {
 	protected void descargarExcel(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			System.out.println("hola");
-			Double x = Double.parseDouble("a");
+			List<Persona> personas = personaDAO.getAllPersonas();
+			response.setContentType("application/vnd.ms-excel");
+			response.setHeader("Content-Disposition", "attachment; filename=ListaPersonas.xlsx");
+
+			if (personas.size() > 0) {
+				XSSFWorkbook workbook = new XSSFWorkbook();
+				XSSFSheet sheet = workbook.createSheet("Roles");
+
+				String[] headers = new String[] { "Id", "Nombre", "Apellido paterno", "Apellido materno", "Edad",
+						"Telefono", "RFC", "Fecha de nacimiento", "Domicilio" };
+				Row headerRow = sheet.createRow(0);
+				for (int i = 0; i < headers.length; i++) {
+					Cell headerCell = headerRow.createCell(i);
+					headerCell.setCellValue(headers[i]);
+					sheet.autoSizeColumn(i);
+				}
+
+				int rowCount = 1;
+				for (Persona item : personas) {
+					Row row = sheet.createRow(rowCount++);
+					int columnCount = 0;
+					Cell cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getId());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getNombre());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getPaterno());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getMaterno());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getEdad());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getTelefono());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getRfc());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getFechaNacimiento());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getDomicilio());
+				}
+
+				workbook.write(response.getOutputStream());
+				workbook.close();
+				return;
+			} else {
+				listarPersonas(request, response);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 			response.sendRedirect(request.getContextPath() + "/pages/error500.jsp");
 		}
 	}

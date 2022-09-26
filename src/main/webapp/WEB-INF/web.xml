@@ -63,9 +63,16 @@
    <error-code>404</error-code>
    <location>/pages/error404.jsp</location>
    </error-page>
-   
    <error-page>
-   <exception-type>java.lang.Throwable</exception-type>
+   <error-code>500</error-code>
+   <location>/pages/error500.jsp</location>
+   </error-page>
+   <error-page>
+   <exception-type>java.lang.Exception</exception-type>
+   <location>/pages/error500.jsp</location>
+   </error-page>
+   <error-page>
+   <exception-type>java.lang.ClassNotFoundException</exception-type>
    <location>/pages/error500.jsp</location>
    </error-page>
 </web-app>

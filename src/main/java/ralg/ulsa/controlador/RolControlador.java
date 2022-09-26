@@ -1,9 +1,15 @@
 package ralg.ulsa.controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -38,7 +44,7 @@ public class RolControlador extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
-		try (PrintWriter out = response.getWriter()) {
+		try (ServletOutputStream out = response.getOutputStream()) {
 			String action = request.getPathInfo();
 			switch (action) {
 			case "/crear":
@@ -155,10 +161,45 @@ public class RolControlador extends HttpServlet {
 	protected void descargarExcel(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			System.out.println("hola");
-			Double x = Double.parseDouble("a");
+			List<Rol> roles = rolDao.getAllRoles();
+			response.setContentType("application/vnd.ms-excel");
+			response.setHeader("Content-Disposition", "attachment; filename=ListaRoles.xlsx");
+
+			if (roles.size() > 0) {
+				XSSFWorkbook workbook = new XSSFWorkbook();
+				XSSFSheet sheet = workbook.createSheet("Roles");
+
+				String[] headers = new String[] { "Id", "Nombre", "Descripcion" };
+				Row headerRow = sheet.createRow(0);
+				for (int i = 0; i < headers.length; i++) {
+					Cell headerCell = headerRow.createCell(i);
+					headerCell.setCellValue(headers[i]);
+					sheet.autoSizeColumn(i);
+				}
+
+				int rowCount = 1;
+				for (Rol item : roles) {
+					Row row = sheet.createRow(rowCount++);
+					int columnCount = 0;
+					Cell cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getId());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getNombre());
+
+					cell = row.createCell(columnCount++);
+					cell.setCellValue(item.getDescripcion());
+				}
+
+				workbook.write(response.getOutputStream());
+				workbook.close();
+				return;
+			} else {
+				listarRoles(request, response);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 			response.sendRedirect(request.getContextPath() + "/pages/error500.jsp");
 		}
 	}
