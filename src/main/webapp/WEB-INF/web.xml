@@ -31,32 +31,41 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EjeCookiesServlet</display-name>
-    <servlet-name>EjeCookiesServlet</servlet-name>
-    <servlet-class>ralg.ulsa.controlador.EjeCookiesServlet</servlet-class>
+    <display-name>RolControlador</display-name>
+    <servlet-name>RolControlador</servlet-name>
+    <servlet-class>ralg.ulsa.controlador.RolControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EjeCookiesServlet</servlet-name>
-    <url-pattern>/EjeCookiesServlet/*</url-pattern>
+    <servlet-name>RolControlador</servlet-name>
+    <url-pattern>/Rol/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FormularioRegistroServlet</display-name>
-    <servlet-name>FormularioRegistroServlet</servlet-name>
-    <servlet-class>ralg.ulsa.controlador.FormularioRegistroServlet</servlet-class>
+    <display-name>PersonaControlador</display-name>
+    <servlet-name>PersonaControlador</servlet-name>
+    <servlet-class>ralg.ulsa.controlador.PersonaControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FormularioRegistroServlet</servlet-name>
-    <url-pattern>/FormularioRegistroServlet</url-pattern>
+    <servlet-name>PersonaControlador</servlet-name>
+    <url-pattern>/Persona/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>RegistroServlet</display-name>
-    <servlet-name>RegistroServlet</servlet-name>
-    <servlet-class>ralg.ulsa.controlador.RegistroServlet</servlet-class>
+    <display-name>ProductoControlador</display-name>
+    <servlet-name>ProductoControlador</servlet-name>
+    <servlet-class>ralg.ulsa.controlador.ProductoControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RegistroServlet</servlet-name>
-    <url-pattern>/RegistroServlet</url-pattern>
+    <servlet-name>ProductoControlador</servlet-name>
+    <url-pattern>/Producto/*</url-pattern>
   </servlet-mapping>
+  <error-page>
+   <error-code>404</error-code>
+   <location>/pages/error404.jsp</location>
+   </error-page>
+   
+   <error-page>
+   <exception-type>java.lang.Throwable</exception-type>
+   <location>/pages/error500.jsp</location>
+   </error-page>
 </web-app>

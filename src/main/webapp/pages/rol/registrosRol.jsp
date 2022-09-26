@@ -31,44 +31,85 @@
                             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
                             <a class="btn btn-labeled btn-primary"
                                 href="<%=request.getContextPath()%>/pages/rol/crearRol.jsp"
-                        role="button"><span class="btn-label pe-2"><i
-                            class="fa fa-plus"></i></span>Nuevo rol</a>
+                                role="button"><span
+                                class="btn-label pe-2"><i
+                                    class="fa fa-plus"></i></span>Nuevo rol</a> <a
+                                class="btn btn-labeled btn-success text-white"
+                                href="<%=request.getContextPath()%>/Rol/descargarExcel"
+                                role="button"><span
+                                class="btn-label pe-2"><i
+                                    class="fa fa-file-excel-o"></i></span>Exportar
+                                a Excel</a>
+                        </div>
 
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="col-2 text-center align-middle"
+                                            scope="col">Id</th>
+                                        <th
+                                            class="col-4 text-center align-middle"
+                                            scope="col">Nombre</th>
+                                        <th
+                                            class="col-4 text-center align-middle"
+                                            scope="col">Descripcion</th>
+                                        <th scope="col"
+                                            class="col-1 text-center align-middle"></th>
+                                        <th scope="col"
+                                            class="col-1 text-center align-middle"></th>
+                                    </tr>
+                                </thead>
+                                <c:if test="${listaRoles != null}">
+                                    <tbody>
+                                        <c:forEach items="${listaRoles}"
+                                            var="rol">
+                                            <tr>
+                                                <th scope="row"
+                                                    class="text-center align-middle"><c:out
+                                                        value="${rol.getId()}" /></th>
+                                                <td
+                                                    class="text-center align-middle"><c:out
+                                                        value="${rol.getNombre()}" /></td>
+                                                <td
+                                                    class="text-center align-middle"><c:out
+                                                        value="${rol.getDescripcion()}" /></td>
+                                                <td
+                                                    class="text-center align-middle">
+                                                    <a
+                                                    class="btn btn-labeled btn-warning w-50"
+                                                    href="<%=request.getContextPath()%>/Rol/editar?id=${rol.getId()}"
+                                                    role="button"><i
+                                                        class="fa fa-pencil-square-o"
+                                                        aria-hidden="true"></i></a>
+                                                </td>
+                                                <td
+                                                    class="text-center align-middle">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-danger w-50"
+                                                        onclick="askAction(
+                                                            '<%=request.getContextPath()%>/Rol/eliminar?id=${rol.getId()}',
+                                                            '¿Desea eliminar el elemento?')">
+                                                        <i
+                                                            class="fa fa-trash"
+                                                            aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </c:if>
+                            </table>
+                        </div>
+                    </main>
                 </div>
-
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th class="col-md-2" scope="col">Id</th>
-                                <th class="col-md-5" scope="col">Nombre</th>
-                                <th class="col-md-5" scope="col">Descripcion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Administrador</td>
-                                <td>Superusuario con todos los permisos</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Rol 2</td>
-                                <td>Neque porro quisquam est qui dolorem</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Rol 3</td>
-                                <td>Ipsum quia dolor sit amet, consectetur, adipisci velit</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
             </div>
         </div>
         <jsp:include page="/componentes/footerPerfil.jsp"></jsp:include>
     </div>
+
+    <jsp:include page="/componentes/actionsUtilities.jsp"></jsp:include>
 </body>
 </html>

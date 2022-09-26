@@ -14,7 +14,9 @@
     Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
     %>
     <c:if test="${usuario == null }">
-        <jsp:forward page="./login.jsp"></jsp:forward>
+        <%
+        response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
+        %>
     </c:if>
     <jsp:include page="/componentes/sidebarPerfil.jsp"></jsp:include>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
@@ -26,23 +28,13 @@
                 <div class="row">
                     <main class="col-12">
                         <c:choose>
-                            <c:when test="${error != null}">
+                            <c:when test="${errorCrear != null}">
                                 <div class="alert alert-danger mt-3"
                                     role="alert">
                                     <h4 class="alert-heading">Hubo
                                         un error</h4>
-                                    <p>${error}</p>
+                                    <p>${errorCrear}</p>
                                     <hr>
-                                    <p class="mb-0">Por favor
-                                        rellena todos los campos</p>
-                                </div>
-                            </c:when>
-                            <c:when test="${success != null}">
-                                <div class="alert alert-success mt-3"
-                                    role="alert">
-                                    <h4 class="alert-heading">Productos
-                                        registrado</h4>
-                                    ${success}
                                 </div>
                             </c:when>
                         </c:choose>
@@ -52,8 +44,8 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col">
-                                <form
-                                    action="<%=request.getContextPath()%>/Usuario/registrarProducto">
+                                <form method="post"
+                                    action="<%=request.getContextPath()%>/Producto/crear">
                                     <div class="mb-3 row">
                                         <label for="nombre"
                                             class="col-sm-2 col-form-label">Nombre</label>
@@ -132,12 +124,12 @@
                                         class="mb-3 row justify-content-end">
                                         <div class="col-3">
                                             <button type="submit"
-                                                class="btn btn-success mb-3 w-100">Agregar</button>
+                                                class="btn btn-success text-white mb-3 w-100">Agregar</button>
                                         </div>
 
                                         <div class="col-3">
                                             <a
-                                                class="btn btn-labeled btn-danger mb-3 w-100"
+                                                class="btn btn-labeled btn-danger text-white mb-3 w-100"
                                                 href="<%=request.getContextPath()%>/pages/producto/registrosProducto.jsp"
                                                 role="button">Cancelar</a>
                                         </div>

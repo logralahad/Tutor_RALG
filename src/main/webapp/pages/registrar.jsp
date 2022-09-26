@@ -33,38 +33,6 @@
                             action="<%=request.getContextPath()%>/Usuario/registrar"
                             class="register-form" id="register-form">
                             <div class="form-group">
-                                <label for="nombre"><i
-                                    class="zmdi zmdi-account-circle"></i></label>
-                                <input type="text" name="nombre" required
-                                    id="nombre" placeholder="Tu nombre" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="paterno"><i
-                                    class="zmdi zmdi-accounts-outline"></i></label>
-                                <input type="text" name="paterno" required
-                                    id="paterno" placeholder="Tu apellido paterno" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="materno"><i
-                                    class="zmdi zmdi-accounts-alt"></i></label>
-                                <input type="text" name="materno" required
-                                    id="materno" placeholder="Tu apellido materno" />
-                            </div>
-                            <div class="form-group">
-                                <label for="edad"><i
-                                    class="zmdi zmdi-n-1-square"></i></label>
-                                <input type="number" name="edad" required
-                                    id="edad" placeholder="Tu edad" />
-                            </div>
-                            <div class="form-group">
-                                <label for="telefono"><i
-                                    class="zmdi zmdi-phone"></i></label>
-                                <input type="text" name="telefono" required
-                                    id="telefono" placeholder="Tu telefono" />
-                            </div>
-                            <div class="form-group">
                                 <label for="email"><i
                                     class="zmdi zmdi-email"></i></label> <input
                                     type="email" name="correo" required
@@ -93,6 +61,17 @@
                                     class="term-service">T&eacute;rminos
                                         y condiciones</a></label>
                             </div>
+                            <div class="d-flex justify-content-center">
+                                <c:if test="${errorRegister != null}">
+                                    <span
+                                        class="badge rounded-pill bg-danger">
+                                        <i
+                                        class="fa fa-exclamation-triangle"
+                                        aria-hidden="true"></i> <c:out
+                                            value="${errorRegister}" />
+                                    </span>
+                                </c:if>
+                            </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signup"
                                     id="signup" class="form-submit"
@@ -107,8 +86,10 @@
                                 alt="sing up image">
                         </figure>
                         <a href="login.jsp" class="signup-image-link">Ya
-                            tengo una cuenta</a> <a href="<%=request.getContextPath()%>/index.jsp"
-                            class="signup-image-link">Regresar al inicio</a>
+                            tengo una cuenta</a> <a
+                            href="<%=request.getContextPath()%>/index.jsp"
+                            class="signup-image-link">Regresar al
+                            inicio</a>
                     </div>
                 </div>
             </div>

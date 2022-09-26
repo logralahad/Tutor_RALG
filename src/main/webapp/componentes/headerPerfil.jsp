@@ -39,7 +39,7 @@
                     <div class="dropdown-header bg-light py-2">
                         <div class="fw-semibold">General</div>
                     </div>
-                    <a class="dropdown-item" href="logout.jsp"> <i
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/pages/logout.jsp"> <i
                         class="fa-solid fa-right-from-bracket icon me-2"></i>
                         Cerrar sesi&oacute;n
                     </a>

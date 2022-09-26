@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                         </div>
-                        <form
+                        <form method="post"
                             action="<%=request.getContextPath()%>/Usuario/login">
                             <div class="form-group first">
                                 <label for="username">Correo</label> <input
@@ -59,6 +59,19 @@
                                 <input type="password"
                                     class="form-control" name="password">
 
+                            </div>
+
+                            <div
+                                class="d-flex mt-3 mb-3 justify-content-center">
+                                <c:if test="${errorLogin != null}">
+                                    <span
+                                        class="badge rounded-pill bg-danger">
+                                        <i
+                                        class="fa fa-exclamation-triangle"
+                                        aria-hidden="true"></i> <c:out
+                                            value="${errorLogin}" />
+                                    </span>
+                                </c:if>
                             </div>
 
                             <div

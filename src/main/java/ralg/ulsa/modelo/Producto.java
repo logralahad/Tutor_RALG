@@ -1,14 +1,40 @@
 package ralg.ulsa.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "producto")
 public class Producto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@Column(name = "descripcion")
 	private String descripcion;
+
+	@Column(name = "precio")
 	private Float precio;
-	private String imagen;
+
+	@Column(name = "imagenURL")
+	private String imagenURL;
+
+	@Column(name = "numExistencias")
 	private Integer numExistencias;
+
+	@Column(name = "codigoBarras")
 	private String codigoBarras;
+
+	@Column(name = "ivaPorcentaje")
 	private Integer ivaPorcentaje;
 
 	public Producto() {
@@ -21,7 +47,7 @@ public class Producto {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
-		this.imagen = imagen;
+		this.imagenURL = imagen;
 		this.numExistencias = numExistencias;
 		this.codigoBarras = codigoBarras;
 		this.ivaPorcentaje = ivaPorcentaje;
@@ -60,11 +86,11 @@ public class Producto {
 	}
 
 	public String getImagen() {
-		return imagen;
+		return imagenURL;
 	}
 
 	public void setImagen(String imagen) {
-		this.imagen = imagen;
+		this.imagenURL = imagen;
 	}
 
 	public Integer getNumExistencias() {

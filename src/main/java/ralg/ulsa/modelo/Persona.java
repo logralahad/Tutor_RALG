@@ -1,15 +1,43 @@
 package ralg.ulsa.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "persona")
 public class Persona {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
+
+	@Column(name = "nombre")
 	private String nombre;
+
+	@Column(name = "paterno")
 	private String paterno;
+
+	@Column(name = "materno")
 	private String materno;
+
+	@Column(name = "edad")
 	private Integer edad;
+
+	@Column(name = "telefono")
 	private String telefono;
+
+	@Column(name = "rfc")
 	private String rfc;
+
+	@Column(name = "fechaNacimiento")
 	private String fechaNacimiento;
+
+	@Column(name = "domicilio")
 	private String domicilio;
 
 	public Persona() {
@@ -99,6 +127,10 @@ public class Persona {
 
 	public void setDomicilio(String domicilio) {
 		this.domicilio = domicilio;
+	}
+
+	public String getNombreCompleto() {
+		return this.nombre + " " + this.paterno + " " + this.materno;
 	}
 
 }
